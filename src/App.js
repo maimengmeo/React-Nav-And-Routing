@@ -4,7 +4,9 @@ function App() {
     return (
         <div>
             <div>
-                <Button>Click Me!</Button>
+                <Button success primary rounded outline>
+                    Click Me!
+                </Button>
             </div>
             <div>
                 <Button>Buy Now!</Button>
@@ -13,7 +15,7 @@ function App() {
                 <Button>See Deal!</Button>
             </div>
             <div>
-                <Button></Button>
+                <Button>Hide Ads!</Button>
             </div>
             <div>
                 <Button></Button>
