@@ -1,7 +1,29 @@
+import Button from "./Button";
+
 function App() {
     return (
         <div>
-            <h1>Hello</h1>
+            <div>
+                <Button>Click Me!</Button>
+            </div>
+            <div>
+                <Button>Buy Now!</Button>
+            </div>
+            <div>
+                <Button>See Deal!</Button>
+            </div>
+            <div>
+                <Button></Button>
+            </div>
+            <div>
+                <Button></Button>
+            </div>
+            <div>
+                <Button></Button>
+            </div>
+            <div>
+                <Button></Button>
+            </div>
         </div>
     );
 }
