@@ -22,7 +22,9 @@ function App() {
                 </Button>
             </div>
             <div>
-                <Button warning>Hide Ads!</Button>
+                <Button warning outline>
+                    Hide Ads!
+                </Button>
             </div>
             <div>
                 <Button></Button>
