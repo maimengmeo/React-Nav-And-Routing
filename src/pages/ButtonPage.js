@@ -30,15 +30,6 @@ function ButtonPage() {
                     Hide Ads!
                 </Button>
             </div>
-            <div>
-                <Button></Button>
-            </div>
-            <div>
-                <Button></Button>
-            </div>
-            <div>
-                <Button></Button>
-            </div>
         </div>
     );
 }
