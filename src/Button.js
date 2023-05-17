@@ -10,6 +10,8 @@ function Button({
     danger,
     rounded,
     outline,
+    onClick,
+    ...rest //this will asign other props to the button like onClick, onMouseOver
 }) {
     const classes = twMerge(
         className("flex items-center px-3 py-1.5 border", {
@@ -28,7 +30,11 @@ function Button({
         })
     );
 
-    return <button className={classes}>{children}</button>;
+    return (
+        <button {...rest} className={classes}>
+            {children}
+        </button>
+    );
 }
 
 Button.propTypes = {
