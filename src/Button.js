@@ -10,7 +10,6 @@ function Button({
     danger,
     rounded,
     outline,
-    onClick,
     ...rest //this will asign other props to the button like onClick, onMouseOver
 }) {
     const classes = twMerge(
