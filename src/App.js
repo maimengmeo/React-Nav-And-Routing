@@ -1,46 +1,25 @@
-import Button from "./components/Button";
-import { GoBell, GoCloudDownload } from "react-icons/go";
+import Accordion from "./components/Accordion";
 
 function App() {
-    const handleClick = () => {
-        console.log("clicked");
-    };
+    const items = [
+        {
+            id: "asdf",
+            label: "Is React better than Angular?",
+            content: "Chicken wings is better",
+        },
+        {
+            id: "fdas",
+            label: "Is C# better than Java?",
+            content: "Korean bbq is better",
+        },
+        {
+            id: "qwer",
+            label: "Is JavaScript better than Python?",
+            content: "Noodles soup is better",
+        },
+    ];
 
-    return (
-        <div>
-            <div>
-                <Button primary rounded onClick={handleClick}>
-                    <GoBell />
-                    Click Me!
-                </Button>
-            </div>
-            <div>
-                <Button primary onMouseEnter={handleClick}>
-                    <GoCloudDownload />
-                    Buy Now!
-                </Button>
-            </div>
-            <div>
-                <Button success outline onClick={handleClick}>
-                    See Deal!
-                </Button>
-            </div>
-            <div>
-                <Button warning outline>
-                    Hide Ads!
-                </Button>
-            </div>
-            <div>
-                <Button></Button>
-            </div>
-            <div>
-                <Button></Button>
-            </div>
-            <div>
-                <Button></Button>
-            </div>
-        </div>
-    );
+    return <Accordion items={items} />;
 }
 
 export default App;
