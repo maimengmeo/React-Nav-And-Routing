@@ -17,11 +17,7 @@ function App() {
     //return <ButtonPage />;
     //return <Accordion items={items} />;
     return (
-        <Dropdown
-            options={options}
-            selection={selection}
-            onSelect={handleSelect}
-        />
+        <Dropdown options={options} value={selection} onChange={handleSelect} />
     );
 }
 
