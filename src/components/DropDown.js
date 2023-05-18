@@ -9,8 +9,16 @@ function Dropdown({ options }) {
         });
     };
 
+    const handleOptionClick = (selectedOption) => {
+        setIsOpen(false);
+    };
+
     const renderedOptions = options.map((option) => {
-        return <div key={option.value}>{option.label}</div>;
+        return (
+            <div onClick={() => handleOptionClick(option)} key={option.value}>
+                {option.label}
+            </div>
+        );
     });
 
     return (
