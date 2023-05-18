@@ -16,24 +16,27 @@ function Dropdown({ options, value, onChange }) {
             }
         };
 
-        document.addEventListener("click", handler, true);
+        document.addEventListener("click", handler, true); //capture pharse handler
 
         return () => {
-            document.removeEventListener("click", handler);
+            document.removeEventListener("click", handler); //cleanUp function, this function only render the first time, so cleanUp function tell app not looking for event anymore
         };
     }, []);
 
+    // onClick: setIsOpen is set to !current
     const handleClick = () => {
         setIsOpen((current) => {
             setIsOpen(!current);
         });
     };
 
+    // handleOptionClick: setIsOpen is set to false to close the dropdown, onChange which is setSelection is set to the selectedOption
     const handleOptionClick = (selectedOption) => {
         setIsOpen(false);
         onChange(selectedOption);
     };
 
+    // renderedOptions: map through each elements in options, display all options, onClick,
     const renderedOptions = options.map((option) => {
         return (
             <div
@@ -53,10 +56,13 @@ function Dropdown({ options, value, onChange }) {
                 onClick={handleClick}
             >
                 {value?.label || "Select..."}
+                {/* check if value exist if true, get the value.label */}
                 <GoChevronDown className="text-lg" />
             </Panel>
             {isOpen && (
                 <Panel className="absolute top-full ">{renderedOptions}</Panel>
+                // if isOpen, return the second truthy value which is the panel,
+                //if not open, return the first falsy value which is isOpen, with React, it wont show anythings
             )}
         </div>
     );
