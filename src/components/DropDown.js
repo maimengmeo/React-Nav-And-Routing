@@ -7,8 +7,13 @@ function Dropdown({ options, value, onChange }) {
     const divEl = useRef();
 
     useEffect(() => {
-        const handler = () => {
-            console.log(divEl.current);
+        const handler = (event) => {
+            if (!divEl.current) return;
+
+            if (!divEl.current.contains(event.target)) {
+                //if the current click div !== event target then close
+                setIsOpen(false);
+            }
         };
 
         document.addEventListener("click", handler, true);
