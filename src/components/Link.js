@@ -1,11 +1,15 @@
 import useNavigation from "../hooks/use-navigation";
 import classNames from "classnames";
 
-function Link({ to, children }) {
+function Link({ to, children, className, activeClassName }) {
     //to is the path, children is text shows inside of a element
-    const { navigate } = useNavigation();
+    const { navigate, currentPath } = useNavigation();
 
-    const classes = classNames("text-blue-500");
+    const classes = classNames(
+        "text-blue-500",
+        className,
+        currentPath === to && activeClassName //if the first condition is true, return the second truthy value
+    );
 
     //when user click a link, prevent default to prevent the auto rendering, then navigate user by the function
     const handleClick = (event) => {
