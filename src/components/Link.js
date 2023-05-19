@@ -1,9 +1,11 @@
-import { useContext } from "react";
-import NavigationContext from "../context/Navigation";
+import useNavigation from "../hooks/use-navigation";
+import classNames from "classnames";
 
 function Link({ to, children }) {
     //to is the path, children is text shows inside of a element
-    const { navigate } = useContext(NavigationContext);
+    const { navigate } = useNavigation();
+
+    const classes = classNames("text-blue-500");
 
     //when user click a link, prevent default to prevent the auto rendering, then navigate user by the function
     const handleClick = (event) => {
@@ -18,7 +20,7 @@ function Link({ to, children }) {
     };
 
     return (
-        <a href={to} onClick={handleClick}>
+        <a className={classes} href={to} onClick={handleClick}>
             {children}
         </a>
     );

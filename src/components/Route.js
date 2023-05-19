@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import NavigationContext from "../context/Navigation";
+import useNavigation from "../hooks/use-navigation";
 
 function Route({ path, children }) {
-    const { currentPath } = useContext(NavigationContext);
+    const { currentPath } = useNavigation();
 
     if (path === currentPath) return children; //check if the path props is currentPath, if true, return children, which would be the page component
 
