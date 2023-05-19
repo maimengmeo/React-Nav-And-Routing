@@ -1,4 +1,4 @@
-import Dropdown from "./components/DropDown";
+import Dropdown from "../components/DropDown";
 import { useState } from "react";
 
 function DropdownPage() {
