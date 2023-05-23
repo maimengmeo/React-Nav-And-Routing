@@ -1,19 +1,19 @@
-function Table({ data, header }) {
-    const renderedRow = data.map((d) => {
+function Table({ data, config }) {
+    const renderedRows = data.map((d) => {
+        //nested map. map through config, for each element: fruit, color, score, return a td by render function
+        const renderedCells = config.map((c) => {
+            return <td className="p-3">{c.render(d)}</td>;
+        });
+
         return (
             <tr key={d.name} className="border-b">
-                <td className="p-3">{d.name}</td>
-                <td className="p-3">
-                    <div className={`p-3 m-2 ${d.color}`}></div>
-                    {/* make the colored square */}
-                </td>
-                <td className="p-3">{d.score}</td>
+                {renderedCells}
             </tr>
         );
     });
 
-    const renderedHeader = header.map((h) => {
-        return <th key={h.label}>{h.label}</th>;
+    const renderedHeader = config.map((c) => {
+        return <th key={c.label}>{c.label}</th>;
     });
 
     return (
@@ -21,7 +21,7 @@ function Table({ data, header }) {
             <thead>
                 <tr className="boder-b-2">{renderedHeader}</tr>
             </thead>
-            <tbody>{renderedRow}</tbody>
+            <tbody>{renderedRows}</tbody>
         </table>
     );
 }
