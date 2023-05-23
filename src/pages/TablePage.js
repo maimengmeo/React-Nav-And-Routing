@@ -8,9 +8,15 @@ function TablePage() {
         { name: "Lime", color: "bg-green-500", score: 4 },
     ];
 
+    const header = [
+        { label: "Fruits" },
+        { label: "Color" },
+        { label: "Score" },
+    ];
+
     return (
         <div>
-            <Table data={data} />
+            <Table data={data} header={header} />
         </div>
     );
 }
