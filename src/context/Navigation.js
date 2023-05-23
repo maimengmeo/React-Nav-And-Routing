@@ -17,7 +17,7 @@ const NavigationProvider = ({ children }) => {
     }, []);
 
     const navigate = (to) => {
-        window.history.pushState({}, "", to);
+        window.history.pushState({}, "", to); //navigate to a component page without sending requrest
         setCurrentPath(to);
     };
 
