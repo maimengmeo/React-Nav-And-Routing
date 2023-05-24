@@ -1,12 +1,16 @@
-function Table({ data, config }) {
+function Table({ data, config, keyFn }) {
     const renderedRows = data.map((d) => {
         //nested map. map through config, for each element: fruit, color, score, return a td by render function
         const renderedCells = config.map((c) => {
-            return <td className="p-3">{c.render(d)}</td>;
+            return (
+                <td className="p-3" key={c.label}>
+                    {c.render(d)}
+                </td>
+            );
         });
 
         return (
-            <tr key={d.name} className="border-b">
+            <tr key={keyFn(d)} className="border-b">
                 {renderedCells}
             </tr>
         );
