@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 function Table({ data, config, keyFn }) {
     const renderedRows = data.map((d) => {
         //nested map. map through config, for each element: fruit, color, score, return a td by render function
@@ -18,7 +20,7 @@ function Table({ data, config, keyFn }) {
 
     const renderedHeader = config.map((c) => {
         if (c.header) {
-            return c.header();
+            return <Fragment key={c.label}>{c.header()}</Fragment>;
         } else {
             return <th key={c.label}>{c.label}</th>;
         }
