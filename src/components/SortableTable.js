@@ -23,6 +23,14 @@ function SortableTable(props) {
     //handle click will change the state. null-asc-desc-null
     //everytime click, app will be rerendered, resort, passed to table
     const handleClick = (label) => {
+        //check if the clicked label is same as the current label,
+        //if not reset the sortedData, get new sortedData by the new label
+        if (sortBy && label !== sortBy) {
+            setSortBy(label);
+            setSortOrder("asc");
+            return;
+        }
+
         if (sortOrder === null) {
             setSortOrder("asc");
             setSortBy(label);
@@ -78,7 +86,6 @@ function SortableTable(props) {
 
     return (
         <div>
-            {sortOrder} - {sortBy}{" "}
             <Table {...props} data={sortedData} config={updatedConfig} />
         </div>
     );
