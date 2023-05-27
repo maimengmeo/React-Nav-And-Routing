@@ -6,13 +6,31 @@
 //when user clicks the th, sort data & pass the result to table
 //table->shortabletable->tablepage
 
+//sortable table:
+//2 pcs of state:
+//  +track of the sort order: null 'asc' 'desc'
+//  +track which col is sorting: null, 'name', 'score'
+
 import Table from "./Table";
+import { useState } from "react";
 
 function SortableTable(props) {
     const { config } = props;
+    const [sortOrder, setSortOrder] = useState(null);
+    const [sortBy, setSortBy] = useState(null);
 
+    //handle click will change the state. null-asc-desc-null
     const handleClick = (label) => {
-        console.log(label);
+        if (sortOrder === null) {
+            setSortOrder("asc");
+            setSortBy(label);
+        } else if (sortOrder === "asc") {
+            setSortOrder("desc");
+            setSortBy(label);
+        } else if (sortOrder === "desc") {
+            setSortOrder(null);
+            setSortBy(label);
+        }
     };
 
     const updatedConfig = config.map((c) => {
@@ -31,7 +49,11 @@ function SortableTable(props) {
         };
     });
 
-    return <Table {...props} config={updatedConfig} />;
+    return (
+        <div>
+            {sortOrder} - {sortBy} <Table {...props} config={updatedConfig} />
+        </div>
+    );
 }
 
 export default SortableTable;
