@@ -21,6 +21,7 @@ function Table({ data, config, keyFn }) {
     const renderedHeader = config.map((c) => {
         if (c.header) {
             return <Fragment key={c.label}>{c.header()}</Fragment>;
+            //console complained about no key. using fragment for proper html tag. this wont show any ele inside the DOM
         } else {
             return <th key={c.label}>{c.label}</th>;
         }
