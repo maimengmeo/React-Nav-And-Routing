@@ -17,7 +17,11 @@ function Table({ data, config, keyFn }) {
     });
 
     const renderedHeader = config.map((c) => {
-        return <th key={c.label}>{c.label}</th>;
+        if (c.header) {
+            return c.header();
+        } else {
+            return <th key={c.label}>{c.label}</th>;
+        }
     });
 
     return (
