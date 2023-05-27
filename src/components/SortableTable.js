@@ -11,6 +11,10 @@ import Table from "./Table";
 function SortableTable(props) {
     const { config } = props;
 
+    const handleClick = (label) => {
+        console.log(label);
+    };
+
     const updatedConfig = config.map((c) => {
         if (!c.sortValue) {
             return c;
@@ -19,7 +23,11 @@ function SortableTable(props) {
         //return an obj, if there is sort value, tranform obj by adding header func
         return {
             ...c,
-            header: () => <th>{c.label} IS SORTED</th>,
+            header: () => (
+                <th onClick={() => handleClick(c.label)}>
+                    {c.label} IS SORTED
+                </th>
+            ),
         };
     });
 
