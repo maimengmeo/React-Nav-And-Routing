@@ -15,11 +15,12 @@ import Table from "./Table";
 import { useState } from "react";
 
 function SortableTable(props) {
-    const { config } = props;
+    const { config, data } = props;
     const [sortOrder, setSortOrder] = useState(null);
     const [sortBy, setSortBy] = useState(null);
 
     //handle click will change the state. null-asc-desc-null
+    //everytime click, app will be rerendered, resort, passed to table
     const handleClick = (label) => {
         if (sortOrder === null) {
             setSortOrder("asc");
@@ -49,9 +50,29 @@ function SortableTable(props) {
         };
     });
 
+    //only sort if sortOrder && sortBy !== null
+    //make a copy of the 'data' prop. never modify an array directly if that array is a part of the prop sys or state sys
+    //find the correct sortValue function & use it for sorting
+    let sortedData = [...data];
+    if (sortBy && sortOrder) {
+        const { sortValue } = config.find((c) => c.label === sortBy);
+        sortedData = sortedData.sort((a, b) => {
+            //comparetor function that work with sort func
+            const reverseOrder = sortOrder === "asc" ? 1 : -1; //if asc, keep the order, otherwise, return value will be * -1, order is revered to desc
+
+            const valueA = sortValue(a);
+            const valueB = sortValue(b);
+
+            if (typeof valueA === "string") {
+                return valueA.localeCompare(valueB) * reverseOrder;
+            } else return (valueA - valueB) * reverseOrder;
+        });
+    }
+
     return (
         <div>
-            {sortOrder} - {sortBy} <Table {...props} config={updatedConfig} />
+            {sortOrder} - {sortBy}{" "}
+            <Table {...props} data={sortedData} config={updatedConfig} />
         </div>
     );
 }
