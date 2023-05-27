@@ -13,6 +13,7 @@
 
 import Table from "./Table";
 import { useState } from "react";
+import { GoChevronDown, GoChevronUp } from "react-icons/go";
 
 function SortableTable(props) {
     const { config, data } = props;
@@ -43,8 +44,14 @@ function SortableTable(props) {
         return {
             ...c,
             header: () => (
-                <th onClick={() => handleClick(c.label)}>
-                    {c.label} IS SORTED
+                <th
+                    className="cursor-pointer hover:bg-gray-100"
+                    onClick={() => handleClick(c.label)}
+                >
+                    <div className="flex items-center">
+                        {getIcons(c.label, sortBy, sortOrder)}
+                        {c.label}
+                    </div>
                 </th>
             ),
         };
@@ -75,6 +82,39 @@ function SortableTable(props) {
             <Table {...props} data={sortedData} config={updatedConfig} />
         </div>
     );
+}
+
+function getIcons(label, sortBy, sortOrder) {
+    //check if the column is the sort target, if not, show both icons
+    if (label !== sortBy) {
+        return (
+            <div>
+                <GoChevronUp />
+                <GoChevronDown />
+            </div>
+        );
+    }
+
+    if (sortOrder === null) {
+        return (
+            <div>
+                <GoChevronUp />
+                <GoChevronDown />
+            </div>
+        );
+    } else if (sortOrder === "asc") {
+        return (
+            <div>
+                <GoChevronUp />
+            </div>
+        );
+    } else if (sortOrder === "desc") {
+        return (
+            <div>
+                <GoChevronDown />
+            </div>
+        );
+    }
 }
 
 export default SortableTable;
