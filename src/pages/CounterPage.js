@@ -1,32 +1,39 @@
 import Button from "../components/Button";
-import { useState } from "react";
+import { useReducer } from "react";
 import Panel from "../components/Panel";
 
+const reducer = (state, action) => {};
+
 function CounterPage({ initialCount }) {
-    const [count, setCount] = useState(initialCount);
-    const [valueToAdd, setValueToAdd] = useState(0);
+    // const [count, setCount] = useState(initialCount);
+    // const [valueToAdd, setValueToAdd] = useState(0);
+    const [state, dispatch] = useReducer(reducer, {
+        count: initialCount,
+        valueToAdd: 0,
+    });
+    //store state with single obj
 
     const increment = () => {
-        setCount(count + 1);
+        // setCount(count + 1);
     };
     const decrement = () => {
-        setCount(count - 1);
+        // setCount(count - 1);
     };
 
     const handleChange = (event) => {
         const value = parseInt(event.target.value) || 0;
-        setValueToAdd(value);
+        // setValueToAdd(value);
     };
 
     const hanldeSubmit = (event) => {
         event.preventDefault();
-        setCount(count + valueToAdd);
-        setValueToAdd(0);
+        // setCount(count + valueToAdd);
+        // setValueToAdd(0);
     };
 
     return (
         <Panel className="m-3">
-            <h1 className="text-lg">Count is: {count}</h1>
+            <h1 className="text-lg">Count is: {state.count}</h1>
 
             <div className="flex flex-row">
                 <Button primary className="mr-3" onClick={increment}>
@@ -41,7 +48,7 @@ function CounterPage({ initialCount }) {
                 <label>Add a Value</label>
                 <input
                     type="number"
-                    value={valueToAdd || ""} //if value is 0, display empty string
+                    value={state.valueToAdd || ""} //if value is 0, display empty string
                     onChange={handleChange}
                     className="p-1 m-3 bg-gray-50 border border-gray-100"
                 ></input>
