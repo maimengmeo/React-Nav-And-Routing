@@ -13,7 +13,8 @@ function CounterPage({ initialCount }) {
         count: initialCount,
         valueToAdd: 0,
     });
-    //store state with single obj
+    //store state with single obj,
+    //dispatch is function to update state. only pass 1 arg to dispatch
 
     const increment = () => {
         // setCount(count + 1);
