@@ -6,14 +6,23 @@ import Panel from "../components/Panel";
 const INCREMENT_COUNT = "increment";
 const DECREMENT_COUNT = "decrement";
 const SET_VALUE_TO_ADD = "change-value-to-add";
+const ADD_VALUE_TO_COUNT = "add-value-to-count";
 
 //when user do 1 action, dispatch is called->reducer is called
 const reducer = (state, action) => {
     switch (action.type) {
         case INCREMENT_COUNT:
             return { ...state, count: state.count + 1 };
+        case DECREMENT_COUNT:
+            return { ...state, count: state.count - 1 };
         case SET_VALUE_TO_ADD:
             return { ...state, valueToAdd: action.payload };
+        case ADD_VALUE_TO_COUNT:
+            return {
+                ...state,
+                count: state.count + state.valueToAdd,
+                valueToAdd: 0,
+            };
         default:
             return state;
         //can throw error here instead of return state
@@ -44,6 +53,7 @@ function CounterPage({ initialCount }) {
     };
     const decrement = () => {
         // setCount(count - 1);
+        dispatch({ type: DECREMENT_COUNT }); //action obj
     };
 
     const handleChange = (event) => {
@@ -55,8 +65,11 @@ function CounterPage({ initialCount }) {
 
     const hanldeSubmit = (event) => {
         event.preventDefault();
+
         // setCount(count + valueToAdd);
         // setValueToAdd(0);
+
+        dispatch({ type: ADD_VALUE_TO_COUNT });
     };
 
     return (
