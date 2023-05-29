@@ -9,13 +9,23 @@ const SET_VALUE_TO_ADD = "change-value-to-add";
 
 //when user do 1 action, dispatch is called->reducer is called
 const reducer = (state, action) => {
-    if (action.type === INCREMENT_COUNT)
-        return { ...state, count: state.count + 1 };
+    switch (action.type) {
+        case INCREMENT_COUNT:
+            return { ...state, count: state.count + 1 };
+        case SET_VALUE_TO_ADD:
+            return { ...state, valueToAdd: action.payload };
+        default:
+            return state;
+        //can throw error here instead of return state
+    }
 
-    if (action.type === SET_VALUE_TO_ADD)
-        return { ...state, valueToAdd: action.payload };
+    // if (action.type === INCREMENT_COUNT)
+    //     return { ...state, count: state.count + 1 };
 
-    return state; //always return somethings in reducer
+    // if (action.type === SET_VALUE_TO_ADD)
+    //     return { ...state, valueToAdd: action.payload };
+
+    // return state; //always return somethings in reducer
 };
 
 function CounterPage({ initialCount }) {
