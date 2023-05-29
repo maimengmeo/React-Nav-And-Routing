@@ -2,14 +2,20 @@ import Button from "../components/Button";
 import { useReducer } from "react";
 import Panel from "../components/Panel";
 
+//action type is ALL CAPS
+const INCREMENT_COUNT = "increment";
+const DECREMENT_COUNT = "decrement";
+const SET_VALUE_TO_ADD = "change-value-to-add";
+
+//when user do 1 action, dispatch is called->reducer is called
 const reducer = (state, action) => {
-    if (action.type === "increment")
+    if (action.type === INCREMENT_COUNT)
         return { ...state, count: state.count + 1 };
 
-    if (action.type === "change-value-to-add")
+    if (action.type === SET_VALUE_TO_ADD)
         return { ...state, valueToAdd: action.payload };
 
-    return state;
+    return state; //always return somethings in reducer
 };
 
 function CounterPage({ initialCount }) {
@@ -24,7 +30,7 @@ function CounterPage({ initialCount }) {
 
     const increment = () => {
         // setCount(count + 1);
-        dispatch({ type: "increment" });
+        dispatch({ type: INCREMENT_COUNT }); //action obj
     };
     const decrement = () => {
         // setCount(count - 1);
@@ -34,7 +40,7 @@ function CounterPage({ initialCount }) {
         const value = parseInt(event.target.value) || 0;
         // setValueToAdd(value);
 
-        dispatch({ type: "change-value-to-add", payload: value });
+        dispatch({ type: SET_VALUE_TO_ADD, payload: value }); //action obj
     };
 
     const hanldeSubmit = (event) => {
